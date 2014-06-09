@@ -23,7 +23,7 @@
     "images.kala"
   ],
   "synced_www_folder": {
-    "host_path": "/kalabox/www/",
+    "host_path": "/cedi_box/www/",
     "guest_path": "/var/www/",
     "nfs": "true",
     "nfs_version": "3",
