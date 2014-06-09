@@ -5,3 +5,4 @@
 .vagrant
 .kalabox
 config.json
+.idea
