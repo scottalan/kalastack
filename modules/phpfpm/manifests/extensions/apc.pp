@@ -15,8 +15,8 @@ class phpfpm::extensions::apc (
 
   $apc_total_mem = 0 + $::kalamem
   $apc_shm_size = $apc_total_mem / 10
-  if ($apc_shm_size > 256) {
-    $shm_size = "256M"
+  if ($apc_shm_size < 384) {
+    $shm_size = "384M"
   }
   else {
     $shm_size = "${$apc_shm_size}M"
