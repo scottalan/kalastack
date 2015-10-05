@@ -44,6 +44,7 @@ Vagrant.configure("2") do |config|
   hostker = %x[ uname ].strip
   if hostker == "Darwin" then #looking for way to strip newline
     hostmem = Integer(%x[ sysctl hw.memsize ].scan(/\d+/).shift) / 1049000
+    cpus = `sysctl -n hw.ncpu`.to_i
   elsif hostker == "Linux" then
     hostmem = Integer(%x[ grep MemTotal /proc/meminfo ].scan(/\d+/).shift) / 1024
   else
@@ -93,6 +94,7 @@ Vagrant.configure("2") do |config|
   #
     # Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", (hostmem / conf["memory_divisor"].to_i)]
+    vb.customize ["modifyvm", :id, "--cpus", cpus]
     vb.name = File.read(".kalabox/uuid")
   end
   #
