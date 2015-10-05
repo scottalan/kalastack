@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
   hostarch = %x[ uname -m ].strip
   hostker = %x[ uname ].strip
   if hostker == "Darwin" then #looking for way to strip newline
-    hostmem = Integer(%x[ sysctl hw.memsize ].scan(/\d+/).shift) / 1049000
+    hostmem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 4 #On a 16GB mac this will be 4096
     cpus = `sysctl -n hw.ncpu`.to_i
   elsif hostker == "Linux" then
     hostmem = Integer(%x[ grep MemTotal /proc/meminfo ].scan(/\d+/).shift) / 1024
